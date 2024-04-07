@@ -1,9 +1,7 @@
 package com.yupi.my_usercenter_backend.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
@@ -14,7 +12,7 @@ import lombok.Data;
  */
 @TableName(value ="userinfo")
 @Data
-public class userinfo implements Serializable {
+public class Userinfo implements Serializable {
     /**
      * id
      */
@@ -74,6 +72,7 @@ public class userinfo implements Serializable {
     /**
      * 是否删除
      */
+    @TableLogic
     private Integer isDelete;
 
     /**
