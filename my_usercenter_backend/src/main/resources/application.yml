@@ -9,3 +9,7 @@ spring:
     password: 20020901lcb
 server:
   port: 8101
+# 解决mybatis 驼峰转下划线
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
