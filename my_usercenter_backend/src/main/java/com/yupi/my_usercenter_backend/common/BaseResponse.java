@@ -1,12 +1,14 @@
 package com.yupi.my_usercenter_backend.common;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
+import lombok.Data;
 
 import java.io.Serializable;
 
 /**
  * 通用返回类
  */
+@Data
 public class BaseResponse<T> implements Serializable {
     /**
      * 状态码

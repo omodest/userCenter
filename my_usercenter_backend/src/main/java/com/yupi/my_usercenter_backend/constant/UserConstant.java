@@ -9,8 +9,8 @@ public interface UserConstant {
     String SALT_VALUE = "ssssSaltPoiseValeAaa";
 
     // 默认权限
-    int DEFAULT_ROLE = 0;
+    String DEFAULT_ROLE = "0";
 
     // 特殊权限
-    int ADMIN_ROLE = 1;
+    String ADMIN_ROLE = "1";
 }

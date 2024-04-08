@@ -9,6 +9,8 @@ spring:
     password: 20020901lcb
 server:
   port: 8101
+  servlet:
+    context-path: /api
 # 解决mybatis 驼峰转下划线
 mybatis-plus:
   configuration:

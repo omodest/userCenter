@@ -86,9 +86,10 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo>
         Userinfo userinfo = new Userinfo();
         userinfo.setUserAccount(userAccount);
         userinfo.setUserPassword(md5Password);
-        int res = userinfoMapper.insert(userinfo);
-        if (res < 0){
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "系统内部原因，导致注册失败");
+//        int res = userinfoMapper.insert(userinfo);
+        boolean res = this.save(userinfo);
+        if (!res){
+            return -1L;
         }
 
         return userinfo.getId();
