@@ -8,7 +8,7 @@ spring:
     username: root
     password: 20020901lcb
 server:
-  port: 8101
+  port: 8080
   servlet:
     context-path: /api
 # 解决mybatis 驼峰转下划线

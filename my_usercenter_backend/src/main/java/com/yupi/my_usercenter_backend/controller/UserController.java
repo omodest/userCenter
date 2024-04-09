@@ -1,7 +1,6 @@
 package com.yupi.my_usercenter_backend.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.yupi.my_usercenter_backend.common.BaseResponse;
 import com.yupi.my_usercenter_backend.common.ErrorCode;
 import com.yupi.my_usercenter_backend.common.ResultUtils;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
