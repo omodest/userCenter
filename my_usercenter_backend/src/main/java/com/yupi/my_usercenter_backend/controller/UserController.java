@@ -110,7 +110,7 @@ public class UserController {
     }
 
     /**
-     * 删除用户
+     * 删除id用户
      * @param id
      * @param request
      * @return

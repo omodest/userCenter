@@ -95,6 +95,13 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo>
         return userinfo.getId();
     }
 
+    /**
+     * 用户登录
+     * @param userAccount
+     * @param userPassWord
+     * @param request 获取请求的各种信息，比如请求的参数、请求头、请求的方法（GET、POST 等）、请求的 URI 等
+     * @return
+     */
     @Override
     public Userinfo UserLogin(String userAccount, String userPassWord, HttpServletRequest request) {
         // 1. 校验
