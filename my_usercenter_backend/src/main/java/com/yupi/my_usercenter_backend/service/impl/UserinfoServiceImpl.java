@@ -86,6 +86,10 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo>
         Userinfo userinfo = new Userinfo();
         userinfo.setUserAccount(userAccount);
         userinfo.setUserPassword(md5Password);
+
+        Date currentTime = new Date();
+        userinfo.setCreateTime(currentTime);
+        userinfo.setUpdateTime(currentTime);
 //        int res = userinfoMapper.insert(userinfo);
         boolean res = this.save(userinfo);
         if (!res){

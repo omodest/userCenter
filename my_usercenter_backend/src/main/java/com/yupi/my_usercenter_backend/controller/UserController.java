@@ -8,9 +8,18 @@ import com.yupi.my_usercenter_backend.exception.BusinessException;
 import com.yupi.my_usercenter_backend.model.Request.UserLoginRequest;
 import com.yupi.my_usercenter_backend.model.Request.UserRegisterRequest;
 import com.yupi.my_usercenter_backend.model.Userinfo;
+import com.yupi.my_usercenter_backend.model.dto.UserAddRequest;
+import com.yupi.my_usercenter_backend.model.dto.UserQueryRequest;
+import com.yupi.my_usercenter_backend.model.dto.UserUpdateRequest;
+import com.yupi.my_usercenter_backend.service.UserManageService;
 import com.yupi.my_usercenter_backend.service.UserinfoService;
+import com.yupi.my_usercenter_backend.service.impl.UserManageServiceImpl;
+import com.yupi.my_usercenter_backend.utils.ExcelUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +35,9 @@ public class UserController {
 
     @Resource
     private UserinfoService userinfoService;
+
+    @Resource
+    private UserManageService userManageService;
 
     /**
      * 用户注册
@@ -89,7 +101,7 @@ public class UserController {
     }
 
     /**
-     * 管理员查询用户
+     * 管理员查询用户（根据姓名查询 或 展示所以用户）
      * @param userName
      * @param request
      * @return
@@ -136,6 +148,48 @@ public class UserController {
     public boolean isAdmin(HttpServletRequest request){
         Userinfo userinfo = (Userinfo) request.getSession().getAttribute(USER_LOGIN_STATE);
         return userinfo != null && userinfo.getUserStatus() == ADMIN_ROLE;
+    }
+
+    /**
+     * 批量插入
+     * @param file
+     * @return
+     */
+    @PostMapping("/importUsers")
+    public ResponseEntity<String> importUsers(@RequestPart("file") MultipartFile file) {
+        try {
+            List<Userinfo> users = ExcelUtils.parseExcel(file.getInputStream());
+            userManageService.addUserListRequest(users);
+            return ResponseEntity.ok("Users imported successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to import users.");
+        }
+    }
+
+    @PostMapping("/add")
+    public BaseResponse<Long> addUser(@RequestBody UserAddRequest userAddRequest, HttpServletRequest request){
+        if (!isAdmin(request)){
+            throw new BusinessException(ErrorCode.AUTH_ERROR);
+        }
+        Long userId = userManageService.addUserRequest(userAddRequest,request);
+        return ResultUtils.success(userId);
+    }
+    @PostMapping("/update")
+    public BaseResponse<Long> delUser(@RequestBody UserUpdateRequest userUpdateRequest, HttpServletRequest request){
+        if (!isAdmin(request)){
+            throw new BusinessException(ErrorCode.AUTH_ERROR);
+        }
+        Long userId = userManageService.updateUserRequest(userUpdateRequest,request);
+        return ResultUtils.success(userId);
+    }
+    @PostMapping("/query")
+    public BaseResponse<List<Userinfo>> queryUser(@RequestBody UserQueryRequest userQueryRequest, HttpServletRequest request){
+//        if (!isAdmin(request)){
+//            throw new BusinessException(ErrorCode.AUTH_ERROR);
+//        }
+        List<Userinfo> userinfo = userManageService.queryUserRequest(userQueryRequest, request);
+        return ResultUtils.success(userinfo);
     }
 
 }

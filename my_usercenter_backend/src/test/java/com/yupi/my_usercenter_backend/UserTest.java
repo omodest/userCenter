@@ -1,15 +1,14 @@
 package com.yupi.my_usercenter_backend;
 
 import com.yupi.my_usercenter_backend.mapper.UserinfoMapper;
-
 import com.yupi.my_usercenter_backend.model.Userinfo;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.util.Date;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class UserTest {
@@ -35,8 +34,11 @@ class UserTest {
         userInfo.setUserRole(1); // 假设1代表普通用户
 
         int result = userinfoMapper.insert(userInfo);
-        Assertions.assertEquals(1, result);
+        assertEquals(1, result);
 
     }
+
+
+
 
 }
