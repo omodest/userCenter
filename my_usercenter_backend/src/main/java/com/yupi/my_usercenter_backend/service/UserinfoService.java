@@ -45,4 +45,11 @@ public interface UserinfoService extends IService<Userinfo> {
      */
     int userLogout(HttpServletRequest request);
 
+    /**
+     * 获取当前用户
+     * @param request
+     * @return
+     */
+    Userinfo getLoginUser(HttpServletRequest request);
+
 }

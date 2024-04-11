@@ -15,6 +15,7 @@ import com.yupi.my_usercenter_backend.service.UserManageService;
 import com.yupi.my_usercenter_backend.service.UserinfoService;
 import com.yupi.my_usercenter_backend.service.impl.UserManageServiceImpl;
 import com.yupi.my_usercenter_backend.utils.ExcelUtils;
+import lombok.Value;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,7 @@ public class UserController {
 
     @Resource
     private UserManageService userManageService;
+
 
     /**
      * 用户注册
@@ -185,9 +187,9 @@ public class UserController {
     }
     @PostMapping("/query")
     public BaseResponse<List<Userinfo>> queryUser(@RequestBody UserQueryRequest userQueryRequest, HttpServletRequest request){
-//        if (!isAdmin(request)){
-//            throw new BusinessException(ErrorCode.AUTH_ERROR);
-//        }
+        if (!isAdmin(request)){
+            throw new BusinessException(ErrorCode.AUTH_ERROR);
+        }
         List<Userinfo> userinfo = userManageService.queryUserRequest(userQueryRequest, request);
         return ResultUtils.success(userinfo);
     }

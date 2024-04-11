@@ -178,6 +178,16 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo>
         return 1;
     }
 
+    @Override
+    public Userinfo getLoginUser(HttpServletRequest request) {
+        Object attribute = request.getSession().getAttribute(USER_LOGIN_STATE);
+        Userinfo userinfo = (Userinfo) attribute;
+        if (userinfo == null || userinfo.getId() == null){
+            throw new BusinessException(ErrorCode.NOT_LOGIN, "当前用户获取失败");
+        }
+        return userinfo;
+    }
+
 
 }
 
