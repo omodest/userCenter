@@ -21,5 +21,11 @@ mybatis-plus:
       logic-delete-field: isDelete #全局逻辑删除的字段名
       logic-delete-value: 1 # 逻辑已删除
       logic-not-delete-value: 0
-upload:
-  path: /path/to/upload/directory
+# 对象存储
+# todo 需替换配置
+cos:
+  client:
+    accessKey: xxx
+    secretKey: xxx
+    region: xxx
+    bucket: xxx

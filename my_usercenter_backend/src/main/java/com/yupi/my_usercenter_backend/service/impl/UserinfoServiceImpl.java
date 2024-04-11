@@ -1,4 +1,5 @@
 package com.yupi.my_usercenter_backend.service.impl;
+import java.io.File;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -187,7 +188,6 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo>
         }
         return userinfo;
     }
-
 
 }
 

@@ -13,4 +13,6 @@ public interface UserConstant {
 
     // 特殊权限
     String ADMIN_ROLE = "1";
+
+
 }

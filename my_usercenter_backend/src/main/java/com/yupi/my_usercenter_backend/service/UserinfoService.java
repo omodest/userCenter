@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.yupi.my_usercenter_backend.model.Userinfo;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 
 
 /**
@@ -51,5 +52,7 @@ public interface UserinfoService extends IService<Userinfo> {
      * @return
      */
     Userinfo getLoginUser(HttpServletRequest request);
+
+
 
 }
